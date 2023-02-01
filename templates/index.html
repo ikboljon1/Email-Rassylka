@@ -1,0 +1,36 @@
+<html>
+ <head>
+  <title>Welcome to Newsletter Service</title>
+ </head>
+ 
+ <body>
+  <h2>Subscribers list</h2>
+  <ul>
+   {% for subscriber in subscribers %}
+    <li>Name: {{ subscriber.name }} - Email: {{ subscriber.email }}</li>
+   {% endfor %}
+  </ul>
+ 
+  <hr/>
+  <h3>Subscribe to our newsletter</h3>
+  <form method="POST" action="">
+    {% csrf_token %}
+   Name: <input type="text" name="name"><br><br>
+   Email: <input type="email" name="email"><br><br>
+   Date of Birth: <input type="date" name="birthdate"><br><br>
+   <input type="submit" name="subscribe" value="Subscribe">
+  </form>
+  <hr/>
+ 
+  <h3>Change template</h3>
+  <form method="POST" action="">
+   <select name="template_id">
+    {% for template in template_list %}
+     <option value="{{ template.id }}">{{ template.name }}</option>
+    {% endfor %}
+   </select>
+   <input type="text" name="variables" placeholder="Input variables here"><br><br>
+   <input type="submit" name="change_template" value="Change Template">
+  </form>
+ </body>
+</html>
